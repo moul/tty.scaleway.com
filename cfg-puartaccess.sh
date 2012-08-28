@@ -17,7 +17,7 @@ for item in $filestoreplace
 do
     path=`echo $item | cut -d: -f1`
     file=`echo $item | cut -d: -f2`
-    echo mv $path/$file $path/$file.$timestamp
-    echo cp -p conf/$file $path/$file
+    mv $path/$file $path/$file.$timestamp
+    cp -p conf/$file $path/$file
 done
 echo "Configuration complete."
