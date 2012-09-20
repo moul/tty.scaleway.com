@@ -19,5 +19,8 @@ CREATE TABLE `t_user` (
 CREATE USER ssh IDENTIFIED BY 'sraL89qr43pz';
 GRANT SELECT ON ssh_accounts.t_user TO 'ssh'@'%';
 
+CREATE USER ssh_admin IDENTIFIED BY 'LPWer3n2Pw23';
+GRANT ALL PRIVILEGES ON ssh_accounts.* TO 'ssh_admin'@'%';
+
 INSERT t_user VALUES(2000, 's1', ENCRYPT('p'), 'localhost', 1000);
 INSERT t_user VALUES(2001, 's2', ENCRYPT('p'), 'localhost', 1001);
