@@ -12,7 +12,7 @@ echo ""
 
 blade_ip=`mysql -u ssh -psraL89qr43pz -e "use ssh_accounts; select blade_ip from t_user where login='$LOGNAME'" | head -2 | tail -1`
 port=`mysql -u ssh -psraL89qr43pz -e "use ssh_accounts; select port from t_user where login='$LOGNAME'" | head -2 | tail -1`
-socat stdio tcp-connect:$blade_ip:$port
+socat stdio,raw,echo=0 tcp-connect:$blade_ip:$port
 
 ## $HOME was set to [blade_ip]:[port] from nss
 #socat stdio tcp-connect:$HOME
