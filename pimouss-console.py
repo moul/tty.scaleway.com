@@ -15,10 +15,19 @@ def get_blade_address(pimouss=1, blade=1, shelf=1, platform='dev'):
     return False
 
 def get_pimouss_port(pimouss=1, admin=False):
-    return 2000 + pimouss + (19 if admin else 0)
+    return 1999 + pimouss + (19 if admin else 0)
 
 if __name__ == "__main__":
-    host = get_blade_address(blade=1)
-    port = get_pimouss_port(pimouss=1, admin=False)
-    print host, port
-    #socat(host, port)
+    parser = OptionParser(usage='%prog [options]')
+    parser.add_option("-p", "--pimouss",  dest="pimouss",  type='int', help="pimouss slot PIMOUSS", metavar="PIMOUSS", default=1)
+    parser.add_option("-b", "--blade",    dest="blade",    type='int', help="blade slot",  default=1)
+    parser.add_option("-s", "--shelf",    dest="shelf",    type='int', help="shelf slot",  default=1)
+    parser.add_option("-P", "--platform", dest="platform", type='string', help="platform id", default="dev")
+    parser.add_option("-a", "--admin",    dest="admin",    action="store_true", help="Admin mode", default=False)
+
+    (options, args) = parser.parse_args()
+
+    host = get_blade_address(blade=options.blade)
+    port = get_pimouss_port(pimouss=options.pimouss, admin=options.admin)
+    print("Connecting to host=%s:%d, close the terminal to quit." % (host, port))
+    socat(host, port)
