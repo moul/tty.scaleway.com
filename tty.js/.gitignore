@@ -1,5 +1,4 @@
 jslint.xml
-ttyjs/
-dist/
+build/
 node_modules/
 artifacts/

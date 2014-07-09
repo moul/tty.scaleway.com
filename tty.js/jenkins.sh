@@ -1,9 +1,17 @@
 #!/bin/bash
 
+NAME=console-proxy-node
+ASSETS="static/index.html static/tty.js package.json"
+
+
 set -e
 
-NAME=ttyjs
-ASSETS="static/index.html static/tty.js package.json"
+VERSION=${VERSION##v}
+ARCH=$(uname -p)
+WORKDIR=$(pwd)
+PKGNAME="${NAME}-${VERSION}-${BUILD_NUMBER}-${ARCH}"
+
+echo "Building version ${VERSION}"
 
 # Lint
 coffeelint --report jslint server.coffee \
@@ -11,21 +19,22 @@ coffeelint --report jslint server.coffee \
     | tee jslint.xml
 
 # Create dist dir
-rm -rf "$NAME" artifacts
-mkdir -p "$NAME/static" artifacts
+rm -rf build artifacts
+mkdir -p "build/${PKGNAME}/static" artifacts
 
 # Compile
-coffee -o "$NAME/" -c server.coffee
+coffee -o "build/${PKGNAME}/" -c server.coffee
 
 # Copy assets
 for file in $ASSETS; do
-    cp "$file" "$NAME/$file"
+    cp "${file}" "build/${PKGNAME}/$file"
 done
 
 # Run install script
-cd "$NAME"
+cd "build/${PKGNAME}"
 npm install
-cd ..
+cd $WORKDIR
 
 # Archive
-tar czf "artifacts/$NAME.tgz" "$NAME"
+tar czf "artifacts/${PKGNAME}.tar.gz" "build/${PKGNAME}"
+md5sum "artifacts/${PKGNAME}.tar.gz" > "artifacts/${PKGNAME}.tar.gz.md5sum"
