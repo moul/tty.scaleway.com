@@ -13,6 +13,8 @@ getShellArgs = (session) ->
     query_list.push v
   return query_list
 
+# FIXME: try to pass auth token more securely
+
 config =
   port: 8080
   hostname: "0.0.0.0"
