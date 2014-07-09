@@ -1,1 +1,4 @@
+jslint.xml
+dist/
 node_modules/
+artifacts/
