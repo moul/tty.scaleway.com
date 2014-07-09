@@ -2,22 +2,30 @@
 
 set -e
 
-npm --color false install
-coffeelint --report jslint server.coffee | sed -e 's/\?>/\?>\n/g' -e 's/lineEnd=undefined//g'| tee jslint.xml
+NAME=ttyjs
+ASSETS="static/index.html static/tty.js package.json"
 
-rm -rf dist artifacts
-mkdir -p dist/static artifacts
+# Lint
+coffeelint --report jslint server.coffee \
+    | sed -e 's/\?>/\?>\n/g' -e 's/lineEnd=undefined//g' \
+    | tee jslint.xml
 
-coffee -o dist/ -c server.coffee
+# Create dist dir
+rm -rf "$NAME" artifacts
+mkdir -p "$NAME/static" artifacts
 
-for file in static/index.html static/tty.js package.json; do
-    cp "$file" "dist/$file"
+# Compile
+coffee -o "$NAME/" -c server.coffee
+
+# Copy assets
+for file in $ASSETS; do
+    cp "$file" "$NAME/$file"
 done
 
-PWD=$(pwd)
-
-cd dist
+# Run install script
+cd "$NAME"
 npm install
 cd ..
 
-tar czf artifacts/dist.tgz dist
+# Archive
+tar czf "artifacts/$NAME.tgz" "$NAME"
