@@ -1,5 +1,5 @@
 {
-  "name": "ocs-console-proxy",
+  "name": "console-proxy-node",
   "version": "0.1.0",
   "dependencies": {
     "tty.js": "*"
