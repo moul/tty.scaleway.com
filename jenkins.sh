@@ -6,7 +6,9 @@ ASSETS="static/index.html static/tty.js package.json"
 
 set -e
 
-VERSION=${VERSION##v}
+# FIXME: handle version from git
+#VERSION=${VERSION##v}
+VERSION=$(cat package.json  | grep version | cut -d'"' -f4)
 ARCH=$(uname -p)
 WORKDIR=$(pwd)
 PKGNAME="${NAME}-${VERSION}-${BUILD_NUMBER}-${ARCH}"
