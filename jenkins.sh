@@ -35,7 +35,7 @@ done
 # Run install script
 cd "build/${PKGNAME}"
 npm install
-cd $WORKDIR
+cd -
 
 # Archive
 tar czf "artifacts/${PKGNAME}.tar.gz" "build/${PKGNAME}"
