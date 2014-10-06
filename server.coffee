@@ -4,6 +4,16 @@ process.title = 'console-web-proxy'
 tty = require 'tty.js'
 url = require 'url'
 
+# PATCH pty.js
+# see https://github.com/chjj/pty.js/issues/58
+pty = require 'tty.js/node_modules/pty.js'
+waitpid = require 'waitpid'
+pty.Terminal.prototype.kill = (sig='SIGTERM') ->
+  try
+    process.kill @pid, sig
+    waitpid @pid
+# ENDPATCH
+
 getShellArgs = (session) ->
   url = url.parse session.req.headers.referer, true
   query = url.query
