@@ -2,6 +2,7 @@
   "name": "console-proxy-node",
   "version": "0.2.0",
   "dependencies": {
-    "tty.js": "*"
+    "tty.js": "*",
+    "waitpid": "*"
   }
 }
