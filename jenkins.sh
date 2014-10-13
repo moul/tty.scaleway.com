@@ -38,5 +38,5 @@ npm install
 cd -
 
 # Archive
-tar czf "artifacts/${PKGNAME}.tar.gz" -C "build/" "${PKGNAME}"
+tar czf "artifacts/${PKGNAME}.tar.gz" -C "build/${PKGNAME}/" "."
 md5sum "artifacts/${PKGNAME}.tar.gz" > "artifacts/${PKGNAME}.tar.gz.md5sum"
