@@ -375,6 +375,7 @@ function Tab(win, socket) {
     if (err) return self._destroy();
     self.pty = data.pty;
     self.id = data.id;
+    self.write('Connecting...\r\n');
     tty.terms[self.id] = self;
     self.setProcessName(data.process);
     tty.emit('open tab', self);
