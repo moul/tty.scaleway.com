@@ -1,7 +1,7 @@
 #!/bin/bash
 
 NAME=console-proxy-node
-ASSETS="static/index.html static/tty.js package.json"
+ASSETS="static/index.html static/tty.js package.json static/term-ocs.js"
 
 
 set -e
@@ -34,7 +34,7 @@ done
 
 # Run install script
 cd "build/${PKGNAME}"
-npm install
+#npm install
 cd -
 
 # Archive
