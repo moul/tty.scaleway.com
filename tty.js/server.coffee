@@ -15,6 +15,7 @@ pty.Terminal.prototype.kill = (sig='SIGTERM') ->
 # ENDPATCH
 
 getShellArgs = (session) ->
+  return process.argv[3..] if process.argv.length > 3
   url = url.parse session.req.headers.referer, true
   query = url.query
   query_list = []
