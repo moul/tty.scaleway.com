@@ -16,10 +16,14 @@ pty.Terminal.prototype.kill = (sig='SIGTERM') ->
 
 getShellArgs = (session) ->
   return process.argv[3..] if process.argv.length > 3
-  url = url.parse session.req.headers.referer, true
-  query = url.query
+  if session.req.query?.type?
+    query = session.req.query
+  else
+    u = url.parse session.req.headers.referer, true
+    query = u.query
   query_list = []
   for k, v of query
+    continue if k in ['t']
     query_list.push k
     query_list.push v
   return query_list
