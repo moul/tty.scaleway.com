@@ -189,6 +189,7 @@ function Terminal(options) {
 
   this.ybase = 0;
   this.ydisp = 0;
+  this.autoScroll = true;
   this.x = 0;
   this.y = 0;
   this.cursorState = 0;
@@ -1335,7 +1336,9 @@ Terminal.prototype.scroll = function() {
     this.lines = this.lines.slice(-(this.ybase + this.rows) + 1);
   }
 
-  this.ydisp = this.ybase;
+  if (this.autoScroll) {
+      this.ydisp = this.ybase;
+  }
 
   // last line
   row = this.ybase + this.rows - 1;
@@ -1376,6 +1379,7 @@ Terminal.prototype.scrollDisp = function(disp) {
     this.ydisp = 0;
   }
 
+  this.autoScroll = this.ydisp == this.ybase;
   this.refresh(0, this.rows - 1);
 };
 
@@ -1390,7 +1394,11 @@ Terminal.prototype.write = function(data) {
   this.refreshEnd = this.y;
 
   if (this.ybase !== this.ydisp) {
-    this.ydisp = this.ybase;
+    if (this.autoScroll) {
+      this.ydisp = this.ybase;
+    } else {
+      this.bell();
+    }
     this.maxRange();
   }
 
