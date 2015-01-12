@@ -1,8 +1,14 @@
 {
-  "name": "console-proxy-node",
-  "version": "0.2.3",
-  "dependencies": {
-    "tty.js": "*",
-    "waitpid": "*"
-  }
+    "name": "console-proxy-node",
+    "version": "0.2.3",
+    "scripts": {
+        "start": "coffee server.coffee"
+    },
+    "devDependencies": {
+        "coffee-script": ""
+    },
+    "dependencies": {
+        "tty.js": "*",
+        "waitpid": "*"
+    }
 }
