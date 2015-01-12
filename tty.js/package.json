@@ -2,7 +2,7 @@
     "name": "console-proxy-node",
     "version": "0.2.3",
     "scripts": {
-        "start": "coffee server.coffee"
+        "start": "node-dev server.coffee"
     },
     "devDependencies": {
         "coffee-script": ""
