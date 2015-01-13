@@ -34,7 +34,7 @@ done
 
 # Run install script
 cd "build/${PKGNAME}"
-#npm install
+npm install
 cd -
 
 # Archive
