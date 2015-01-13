@@ -18,9 +18,11 @@ getShellArgs = (session) ->
   return process.argv[3..] if process.argv.length > 3
   if session.req.query?.type?
     query = session.req.query
-  else
+  else if session.req.headers?.referer?
     u = url.parse session.req.headers.referer, true
     query = u.query
+  else
+    return []
   query_list = []
   for k, v of query
     continue if k in ['t']
