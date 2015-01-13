@@ -8,7 +8,8 @@
     "coffee-script": ""
   },
   "dependencies": {
-      "tty.js": "^0.2.13",
-      "waitpid": "^0.1.1"
+    "raven": "^0.7.2",
+    "tty.js": "^0.2.13",
+    "waitpid": "^0.1.1"
   }
 }

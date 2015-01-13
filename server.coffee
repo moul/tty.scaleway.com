@@ -3,6 +3,16 @@
 process.title = 'console-web-proxy'
 tty = require 'tty.js'
 url = require 'url'
+raven = require 'raven'
+
+# Raven configuration
+raven_opts = {}
+#  stackFunction: Error.prepareStackTrace
+raven_client = new raven.Client process.env.SENTRY_URL, raven_opts
+
+raven_client.patchGlobal ->
+  console.log 'Exiting.'
+  process.exit 1
 
 # PATCH pty.js
 # see https://github.com/chjj/pty.js/issues/58
@@ -15,6 +25,13 @@ pty.Terminal.prototype.kill = (sig='SIGTERM') ->
 # ENDPATCH
 
 getShellArgs = (session) ->
+  raven_client.captureMessage "Client connection",
+    level: 'debug'
+    extra:
+      req: session.req
+      argv: process.argv
+      env: process.env
+
   return process.argv[3..] if process.argv.length > 3
   if session.req.query?.type?
     query = session.req.query
@@ -22,6 +39,11 @@ getShellArgs = (session) ->
     u = url.parse session.req.headers.referer, true
     query = u.query
   else
+    raven_client.captureError (new Error("Cannot parse query")),
+      extra:
+        req: session.req
+        argv: process.argv
+        env: process.env
     return []
   query_list = []
   for k, v of query
