@@ -18,9 +18,9 @@ raven_client.patchGlobal ->
 # see https://github.com/chjj/pty.js/issues/58
 pty = require 'tty.js/node_modules/pty.js'
 waitpid = require 'waitpid'
-pty.Terminal.prototype.kill = (sig='SIGTERM') ->
+pty.Terminal.prototype.kill = (sig) ->
   try
-    process.kill @pid, sig
+    process.kill @pid, 'SIGKILL'
     waitpid @pid
 # ENDPATCH
 
