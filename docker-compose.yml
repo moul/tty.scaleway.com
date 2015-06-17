@@ -1,11 +1,11 @@
 dev:
   build: .
   ports:
-  - "8080:8080"
+    - "8080:8080"
   volumes:
-  - .:/usr/src/app/
+    - .:/usr/src/app/
   #command: node-dev server.coffee /bin/sh -c "while true; do echo =================; date; date; date; date; date; date; date; date; date; sleep 2; done"
   command: node-dev server.coffee /bin/bash -c "/bin/bash"
   #command: node-dev server.coffee /bin/echo
   environment:
-    SENTRY_URL: "http://c4070a474c2449eb996a607d1eccf0af:feaee8dfde5c4c5bab56857f8b7a7c17@sentry.dev.ocshq.com/10"
+    - SENTRY_URL

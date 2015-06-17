@@ -1,7 +1,3 @@
-console-proxy tty.js version
-============================
+# tty.scaleway.com
 
-```bash
-npm install
-./node_modules/tty.js/bin/tty.js --config=config.json
-```
+Node.js+Socket.io proxy to access nodes serial using browser/javascript client

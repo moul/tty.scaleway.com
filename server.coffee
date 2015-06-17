@@ -5,14 +5,17 @@ tty = require 'tty.js'
 url = require 'url'
 raven = require 'raven'
 
+
 # Raven configuration
 raven_opts = {}
 #  stackFunction: Error.prepareStackTrace
 raven_client = new raven.Client process.env.SENTRY_URL, raven_opts
 
+
 raven_client.patchGlobal ->
   console.log 'Exiting.'
   process.exit 1
+
 
 # PATCH pty.js
 # see https://github.com/chjj/pty.js/issues/58
@@ -23,6 +26,7 @@ pty.Terminal.prototype.kill = (sig) ->
     process.kill @pid, 'SIGKILL'
     waitpid @pid
 # ENDPATCH
+
 
 getShellArgs = (session) ->
   raven_client.captureMessage "Client connection",
@@ -52,7 +56,6 @@ getShellArgs = (session) ->
     query_list.push v
   return query_list
 
-# FIXME: try to pass auth token more securely
 
 config =
   port: 8080
