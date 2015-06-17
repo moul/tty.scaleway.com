@@ -1,4 +1,4 @@
-FROM node
+FROM node:0.10
 RUN npm install -g coffee-script node-dev
 COPY package.json /usr/src/
 RUN cd /usr/src && npm install
