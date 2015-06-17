@@ -32,3 +32,8 @@ jenkins:
 	# Archive
 	tar czf "artifacts/$(PKGNAME).tar.gz" -C "build/$(PKGNAME)/" "."
 	md5sum "artifacts/$(PKGNAME).tar.gz" > "artifacts/$(PKGNAME).tar.gz.md5sum"
+
+
+up:
+	docker-compose up -d
+	docker-compose logs
