@@ -1,7 +1,7 @@
 {
   "name": "tty.scaleway.com",
   "description": "Node.js+Socket.io proxy to access nodes serial using browser/javascript client",
-  "version": "0.3.1",
+  "version": "0.4.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/scaleway/tty.scaleway.com"
@@ -23,5 +23,5 @@
     "tty.js": "^0.2.14-1",
     "waitpid": "^0.1.1"
   },
-    "engine": "node ~0.10"
+  "engine": "node ~0.10"
 }
