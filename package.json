@@ -19,7 +19,7 @@
     "coffee-script": ""
   },
   "dependencies": {
-    "raven": "^0.7.3",
+    "raven": "^0.8.1",
     "tty.js": "^0.2.14-1",
     "waitpid": "^0.1.1"
   },
