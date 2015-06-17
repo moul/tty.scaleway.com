@@ -3,7 +3,8 @@ ASSETS =                static/index.html static/tty.js package.json static/term
 WORKDIR :=              $(PWD)
 ARCH :=                 $(shell uname -p)
 VERSION :=              $(shell cat package.json  | grep version | cut -d'"' -f4)
-BUILDER_NUMBER ?=       manual
+BUILD_NUMBER ?=         local
+BUILDER_NUMBER ?=       $(TRAVIS_BUILD_NUMBER)
 PKGNAME =               $(NAME)-$(VERSION)-$(BUILD_NUMBER)-$(ARCH)
 
 
@@ -33,7 +34,12 @@ build: node_modules/.bin/coffee node_modules
 
 .PHONY: jenkins
 jenkins: build
-	# Archive
+	tar czf "artifacts/$(PKGNAME).tar.gz" -C "build/$(PKGNAME)/" "."
+	md5sum "artifacts/$(PKGNAME).tar.gz" > "artifacts/$(PKGNAME).tar.gz.md5sum"
+
+
+.PHONY: travis
+travis: build
 	tar czf "artifacts/$(PKGNAME).tar.gz" -C "build/$(PKGNAME)/" "."
 	md5sum "artifacts/$(PKGNAME).tar.gz" > "artifacts/$(PKGNAME).tar.gz.md5sum"
 
