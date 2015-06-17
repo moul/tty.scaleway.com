@@ -46,6 +46,9 @@ travis: build
 
 .PHONY: up
 up:
+	docker-compose build
+	-docker-compose kill
+	-docker-compose rm --force
 	docker-compose up -d
 	docker-compose logs
 
