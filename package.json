@@ -1,9 +1,20 @@
 {
-  "name": "console-proxy-node",
+  "name": "tty.scaleway.com",
+  "description": "Node.js+Socket.io proxy to access nodes serial using browser/javascript client",
   "version": "0.3.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/scaleway/tty.scaleway.com"
+  },
+  "keywords": [
+    "scaleway"
+  ],
   "scripts": {
     "start": "node-dev server.coffee"
   },
+  "author": "Scaleway <opensource@scaleway.com>",
+  "license": "MIT",
+  "readmeFilename": "README.md",
   "devDependencies": {
     "coffee-script": ""
   },
