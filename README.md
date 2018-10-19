@@ -17,4 +17,4 @@ Node.js+Socket.io proxy to access nodes serial using browser/javascript client
 # Licensing
 
 © 2014-2015 Scaleway - [MIT License](https://github.com/scaleway/tty.scaleway.com/blob/master/LICENSE).
-A project by [![Scaleway](https://avatars1.githubusercontent.com/u/5185491?v=3&s=42)](https://www.scaleway.com/)
+A project by [![Scaleway](https://avatars1.githubusercontent.com/u/5185491?v=3&s=42)](https://www.scaleway.com/) [![GuardRails badge](https://badges.production.guardrails.io/moul/tty.scaleway.com.svg)](https://www.guardrails.io)
